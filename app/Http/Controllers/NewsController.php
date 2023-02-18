@@ -53,4 +53,6 @@ class NewsController extends Controller
             'category' => $category
     	]);
     }
+
+    
 }
