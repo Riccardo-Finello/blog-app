@@ -27,3 +27,9 @@ Route::get('news/category/{categoryId}', [NewsController::class, 'getNewsFiltere
 Route::get('news/{id}', [NewsController::class, 'getNews'])->name('news-detail');
 
 Route::get('login', [AccessController::class, 'getLogin'])->name('login');
+
+Route::get('register', [AccessController::class, 'getRegister'])->name('register');
+
+Route::post('doRegister', [AccessController::class, 'doRegister'])->name('doRegister');
+
+Route::post('doLogin', [AccessController::class, 'doLogin'])->name('doLogin');
