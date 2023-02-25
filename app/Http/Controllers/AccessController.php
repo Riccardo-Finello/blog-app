@@ -15,9 +15,14 @@ class AccessController extends Controller{
     
     public function login(): View
     {
-        return view('auth.login', ['no_categories' => true]);
+        return view('login', ['no_categories' => true]);
     }
-    
+
+    public function register(): View
+    {
+        return view('register', ['no_categories' => true]);
+    }
+
     public function getLogin(){
 
         $categories = Category::all();
@@ -48,7 +53,7 @@ class AccessController extends Controller{
         ]);
     }
 
-    public function doRegister(Request $request): RedirectResponse{
+    public function doRegister(Request $request){
 
         $validate = $request -> validate ([
             "name" => "required|max:255",
@@ -78,11 +83,11 @@ class AccessController extends Controller{
 
             $msg .= "</br> $emailLink";
 
-            return view('auth.register-success')->with('msg', $msg);
+            return view('register-success')->with('msg', $msg);
         }
     }
 
-    public function doLogin(Request $request): RedirectResponse{
+    public function doLogin(Request $request){
         $validate = $request -> validate ([
             "email" => "required|email",
             "password" => "required|min:6|max:255"
@@ -93,13 +98,32 @@ class AccessController extends Controller{
         $input['password'] = bcrypt($input['password']);
 
         $user = User::where(['email' => $input['email']])->first();
+
+        if(Hash::check($input['password'], $user->password))
+        {
+            $request->session()->put('logged', true);
+            $request->session()->put('user', $user);
+
+            return redirect()->route('news');
+        }
+
+        return back();
     }
 
     private function sendEmail($user)
     {
-        return route('auth.register-confirm', ['id' => $user->id, 'token' => $user->remember_token]);
+        return route('register-success', ['id' => $user->id, 'token' => $user->remember_token]);
     }
 
+    public function registrationSuccess(): View
+    {
+        return view('register-success', []);
+    }
+
+    public function registrationError(): View
+    {
+        return view('register-error', []);
+    }
 
 
 }

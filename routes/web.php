@@ -34,3 +34,6 @@ Route::post('doRegister', [AccessController::class, 'doRegister'])->name('doRegi
 
 Route::post('doLogin', [AccessController::class, 'doLogin'])->name('doLogin');
 
+Route::get('register-success', [AccessController::class, 'registrationSuccess'])->name('register-success');
+
+Route::get('register-error', [AccessController::class, 'registrationError'])->name('register-error');
