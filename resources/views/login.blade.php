@@ -3,13 +3,7 @@
     @include('partials.head')
     <body>
         @include('partials.menu')
-        <main class="container">
-            <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
-              <div class="col-md-12 px-0">
-                Login
-              </div>
-            </div>
-        </main>
+        
       <div style="margin-left:35%; width:30%">
         @if ($errors->any())
                 <div class="alert alert-danger">
@@ -24,7 +18,7 @@
           @csrf
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{old('email')}}">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">

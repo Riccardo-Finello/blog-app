@@ -33,3 +33,4 @@ Route::get('register', [AccessController::class, 'getRegister'])->name('register
 Route::post('doRegister', [AccessController::class, 'doRegister'])->name('doRegister');
 
 Route::post('doLogin', [AccessController::class, 'doLogin'])->name('doLogin');
+
