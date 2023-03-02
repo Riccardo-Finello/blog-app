@@ -34,5 +34,21 @@
 
         @include('partials.footer')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script>
+
+          // Enable pusher logging - don't include this in production
+          Pusher.logToConsole = true;
+
+          var pusher = new Pusher('082b09677321f35d5b61', {
+            cluster: 'eu'
+          });
+
+          var channel = pusher.subscribe('my-channel');
+          channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+          });
+        </script>
     </body>
 </html>
