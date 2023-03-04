@@ -77,7 +77,7 @@ class AccessController extends Controller{
         $createdUser = User::create($input);
 
         if($createdUser){
-            $msg = "Thank you o r your registration, we have sent you an e-mail";
+            $msg = "Thank you for your registration, we have sent you an e-mail";
 
             $emailLink = $this->sendEmail($createdUser);
 
@@ -95,12 +95,7 @@ class AccessController extends Controller{
 
         $input = $request->only(['email', 'password']);
 
-        $input['password'] = bcrypt($input['password']);
-
-
         $user = User::where(['email' => $input['email']])->first();
-
-        dd($user->password . ' ' . $input['password'] . ' ' . bcrypt('123456'));
 
         if($user && Hash::check($input['password'], $user->password))
         {
@@ -131,7 +126,6 @@ class AccessController extends Controller{
     {
         return view('register-error', ['no_categories' => true]);
     }
-
 
 }
 
