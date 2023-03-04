@@ -97,14 +97,21 @@ class AccessController extends Controller{
 
         $input['password'] = bcrypt($input['password']);
 
+
         $user = User::where(['email' => $input['email']])->first();
 
-        if(Hash::check($input['password'], $user->password))
+        dd($user->password . ' ' . $input['password'] . ' ' . bcrypt('123456'));
+
+        if($user && Hash::check($input['password'], $user->password))
         {
             $request->session()->put('logged', true);
             $request->session()->put('user', $user);
 
+            
             return redirect()->route('news');
+        }
+        else{
+            dd('Different hashes');
         }
 
         return back();
@@ -117,13 +124,15 @@ class AccessController extends Controller{
 
     public function registrationSuccess(): View
     {
-        return view('register-success', []);
+        return view('register-success', ['no_categories' => true]);
     }
 
     public function registrationError(): View
     {
-        return view('register-error', []);
+        return view('register-error', ['no_categories' => true]);
     }
 
 
 }
+
+?>

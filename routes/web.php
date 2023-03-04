@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('news', [NewsController::class, 'index']);
+Route::get('news', [NewsController::class, 'index'])->name('news');
 
 Route::get('news/category/{categoryId}', [NewsController::class, 'getNewsFiltered'])->name('news-category');
 
@@ -37,3 +37,5 @@ Route::post('doLogin', [AccessController::class, 'doLogin'])->name('doLogin');
 Route::get('register-success', [AccessController::class, 'registrationSuccess'])->name('register-success');
 
 Route::get('register-error', [AccessController::class, 'registrationError'])->name('register-error');
+
+Route::get('logout',  [AccessController::class, 'logout'])->name('logout');
