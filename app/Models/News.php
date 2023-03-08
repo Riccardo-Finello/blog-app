@@ -20,6 +20,6 @@ class News extends Model
 
 	public function comments()
     {
-    	return $this->hasMany(Comment::class)->orderBy('updated_at', 'desc');
+    	return $this->hasMany(Comment::class)->orderBy('updated_at');
 	}
 }

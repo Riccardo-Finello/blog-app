@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('partials.head')
     <body>
-        @include('partials.menu')
+        
         <main class="container">
             <div class="row justify-content-md-center mt-5 mb-5">
                 <div class="col-md-auto">
-                    <p class="fs-2" style="color:red;">
-                    An error has occurred.
+                    <p class="fs-2">
+                    Your account is now active.<br>
+                    You can login.
                     </p>
                 </div>
             </div>

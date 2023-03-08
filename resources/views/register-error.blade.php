@@ -6,9 +6,8 @@
         <main class="container">
             <div class="row justify-content-md-center mt-5 mb-5">
                 <div class="col-md-auto">
-                    <p class="fs-2">
-                    Your account is now active.</br>
-                    You can login.
+                    <p class="fs-2" style="color:red;">
+                    An error has occurred.
                     </p>
                 </div>
             </div>
