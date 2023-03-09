@@ -27,8 +27,11 @@ class NewsController extends Controller
     {
     	$news = News::find($id);
 
+        $likes = News::find($id)->likes();
+
     	return view('news-detail', [
-            'news' => $news
+            'news' => $news,
+            'likes' =>$likes
     	]);
     }
 

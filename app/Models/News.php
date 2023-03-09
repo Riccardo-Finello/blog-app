@@ -22,4 +22,9 @@ class News extends Model
     {
     	return $this->hasMany(Comment::class)->orderBy('updated_at', 'desc');
 	}
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class)->count();
+    }
 }

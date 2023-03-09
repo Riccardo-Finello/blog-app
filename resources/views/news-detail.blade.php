@@ -7,6 +7,10 @@
           <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
             <div class="col-md-12 px-0">
               <h1 class="display-4 fst-italic">{{ $news->title }}</h1>
+              <div id="LikeDiv">
+                {{ $likes }}
+                <button>Like</button>
+              </div>
             </div>
           </div>
 

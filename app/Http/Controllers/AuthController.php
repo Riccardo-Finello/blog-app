@@ -64,7 +64,6 @@ class AuthController extends Controller
 
         $user = User::where('email', $input['email'])->get();
 
-        // if user already exists
         if(!$user->isEmpty())
         {
             return redirect()->route('auth.register-error');
@@ -76,8 +75,7 @@ class AuthController extends Controller
 
         if($createdUser)
         {
-            $msg = "Thank you for registering.</br>
-                    We have sent you an email.";
+            $msg = "Registration completed";
 
             $emailLink = $this->sendEmail($createdUser);
 
@@ -112,8 +110,6 @@ class AuthController extends Controller
         {
             $user->email_verified_at = now();
             $user->save();
-
-            //Mail::to($user)->send(new Registration());
         }
 
         return redirect()->route('auth.login');
