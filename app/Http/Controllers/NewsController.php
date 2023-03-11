@@ -7,6 +7,7 @@ use App\Models\News;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
@@ -96,4 +97,35 @@ class NewsController extends Controller
 
         return $comments;
     }
+
+    public function likeNews($id, Request $request){
+        if(!$request->session()->get('logged')) {
+            return false;
+        }
+
+        $user = $request->session()->get('user');
+
+        $comment = $request->input("comment");
+
+                                                            //needs control to check if like already exists
+        $options = [
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => false
+          ];
+  
+          $app_key = env("PUSHER_APP_KEY");
+          $app_secret = env("PUSHER_APP_SECRET");
+          $app_id = env("PUSHER_APP_ID");
+  
+          $pusher = new \Pusher\Pusher($app_key, $app_secret, $app_id, $options);
+
+          $like = Like::create([
+            'user_id' => $user->id,
+            'news_id' => $id
+          ]);
+
+          return $like;
+    }
+
+    
 }

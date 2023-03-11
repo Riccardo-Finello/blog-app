@@ -34,6 +34,8 @@ Route::post('news/{id}/comment', [NewsController::class, 'newComment'])->name('n
 
 Route::get('news/{id}/comments', [NewsController::class, 'getCommentsByNews'])->name('news-comments');
 
+Route::post('news/{id}/like', [NewsController::class, 'likeNews'])->name('news-like');
+
 /******************************************************************************/
 /**************** AUTH ********************************************************/
 /******************************************************************************/

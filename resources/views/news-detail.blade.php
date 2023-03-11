@@ -7,10 +7,13 @@
           <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
             <div class="col-md-12 px-0">
               <h1 class="display-4 fst-italic">{{ $news->title }}</h1>
+              @if(Session::get('logged'))
               <div id="LikeDiv">
-                {{ $likes }}
-                <button>Like</button>
+                <form action="{{ route('news-like') }}" method="POST">
+                  <button type="submit" class="btn btn-primary">Like {{$likes}}</button>
+                </form>
               </div>
+              @endif
             </div>
           </div>
 
