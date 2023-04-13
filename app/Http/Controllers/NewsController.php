@@ -108,7 +108,7 @@ class NewsController extends Controller
         $comment = $request->input("comment");
 
                                                             //needs control to check if like already exists
-        $options = [
+            $options = [
             'cluster' => env('PUSHER_APP_CLUSTER'),
             'useTLS' => false
           ];
@@ -123,6 +123,9 @@ class NewsController extends Controller
             'user_id' => $user->id,
             'news_id' => $id
           ]);
+
+          $pusher->trigger('post-' . $id, 'new-like', $like);
+
 
           return $like;
     }

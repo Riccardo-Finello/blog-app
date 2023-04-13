@@ -9,9 +9,8 @@
               <h1 class="display-4 fst-italic">{{ $news->title }}</h1>
               @if(Session::get('logged'))
               <div id="LikeDiv">
-                <form action="{{ route('news-like') }}" method="POST">
-                  <button type="submit" class="btn btn-primary">Like {{$likes}}</button>
-                </form>
+                
+                <a class="btn btn-sm btn-outline-secondary" href="{{ route('news-like', $news->id) }}">Like {{ $likes }}</a>
               </div>
               @endif
             </div>
